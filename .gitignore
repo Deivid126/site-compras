@@ -1,0 +1,29 @@
+# dependencies
+node_modules/
+.pnp
+.pnp.js
+
+# next.js
+.next/
+out/
+build/
+next-env.d.ts
+
+# typescript incremental
+*.tsbuildinfo
+
+# env
+.env
+.env*.local
+
+# prisma compiled seed
+prisma/dist/
+
+# docker local data
+.postgres-data/
+
+# misc
+*.log
+.DS_Store
+.idea/
+.vscode/
