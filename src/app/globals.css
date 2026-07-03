@@ -2,25 +2,30 @@
   --font-fredoka: var(--font-fredoka), "Fredoka", system-ui, -apple-system,
     "Segoe UI", Roboto, sans-serif;
 
-  --pink: #ff5fa2;
-  --pink-dark: #e03f86;
+  /* McQueen: vermelho de corrida, amarelo de bandeira, preto de pneu */
+  --red: #e2231a;
+  --red-dark: #b01812;
+  --red-bright: #ff3b30;
   --yellow: #ffd84d;
+  --yellow-dark: #e8b800;
+  --black: #1a1a1a;
+  --black-soft: #2a2a2a;
   --blue: #6cc8ff;
   --green: #59c85f;
   --purple: #c08bff;
-  --orange: #ff9d4d;
+  --orange: #ff6a00;
 
-  --bg1: #fff7e6;
-  --bg2: #ffe9f3;
-  --bg3: #e6f3ff;
+  --bg1: #fffdf5;
+  --bg2: #fff3d6;
+  --bg3: #f2f2f2;
 
-  --ink: #3a2a4d;
-  --muted: #8a7aa0;
+  --ink: #2a1a1a;
+  --muted: #7a6a6a;
   --card: #ffffff;
-  --line: #f0e6f5;
+  --line: #f0e6e0;
 
-  --shadow: 0 10px 24px rgba(124, 45, 98, 0.12);
-  --shadow-lg: 0 18px 40px rgba(124, 45, 98, 0.18);
+  --shadow: 0 10px 24px rgba(26, 26, 26, 0.14);
+  --shadow-lg: 0 18px 40px rgba(26, 26, 26, 0.2);
   --radius: 24px;
 }
 
@@ -40,8 +45,8 @@ body {
   background:
     radial-gradient(900px 600px at 10% -5%, var(--bg2), transparent 60%),
     radial-gradient(900px 600px at 95% 0%, var(--bg3), transparent 55%),
-    radial-gradient(800px 500px at 50% 110%, #fff3d6, transparent 60%),
-    linear-gradient(180deg, #fffaf3, #fdf2fb);
+    radial-gradient(800px 500px at 50% 110%, #ffe9b8, transparent 60%),
+    linear-gradient(180deg, #fffdf5, #fff6e6);
   min-height: 100vh;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
@@ -54,7 +59,7 @@ main {
   padding: 24px 20px 64px;
 }
 
-/* ---- decorativo baloes ---- */
+/* ---- decorativo pista ---- */
 .decor {
   position: fixed;
   inset: 0;
@@ -65,9 +70,9 @@ main {
 .decor span {
   position: absolute;
   font-size: 38px;
-  opacity: 0.55;
+  opacity: 0.6;
   animation: floaty 7s ease-in-out infinite;
-  filter: drop-shadow(0 6px 10px rgba(0, 0, 0, 0.08));
+  filter: drop-shadow(0 6px 10px rgba(0, 0, 0, 0.1));
 }
 .decor span:nth-child(2) {
   animation-duration: 9s;
@@ -95,6 +100,24 @@ main {
   }
 }
 
+/* ---- faixa quadriculada (checkered) de largada ---- */
+.checkered {
+  position: relative;
+  z-index: 1;
+  height: 16px;
+  margin: 0 auto 8px;
+  max-width: 1100px;
+  border-radius: 8px;
+  overflow: hidden;
+  background-image:
+    linear-gradient(45deg, var(--black) 25%, transparent 25%, transparent 75%, var(--black) 75%),
+    linear-gradient(45deg, var(--black) 25%, transparent 25%, transparent 75%, var(--black) 75%);
+  background-size: 16px 16px;
+  background-position: 0 0, 8px 8px;
+  background-color: #fff;
+  box-shadow: var(--shadow);
+}
+
 /* ---- hero ---- */
 .hero {
   position: relative;
@@ -104,12 +127,12 @@ main {
 }
 .hero-kicker {
   margin: 0;
-  font-weight: 600;
+  font-weight: 700;
   letter-spacing: 0.04em;
   text-transform: uppercase;
   font-size: 0.85rem;
-  color: var(--pink-dark);
-  background: #fff;
+  color: #fff;
+  background: linear-gradient(90deg, var(--red), var(--red-dark));
   display: inline-block;
   padding: 6px 16px;
   border-radius: 999px;
@@ -120,11 +143,11 @@ main {
   font-size: clamp(2.4rem, 6vw, 3.6rem);
   font-weight: 700;
   line-height: 1.05;
-  background: linear-gradient(90deg, var(--pink), var(--orange), var(--purple));
+  background: linear-gradient(90deg, var(--red), var(--orange), var(--yellow-dark));
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
-  text-shadow: 0 4px 18px rgba(255, 95, 162, 0.18);
+  text-shadow: 0 4px 18px rgba(226, 35, 26, 0.2);
 }
 .hero-sub {
   margin: 0 auto;
@@ -135,9 +158,9 @@ main {
 .hero-badge {
   margin: 18px auto 0;
   display: inline-block;
-  background: linear-gradient(90deg, var(--green), #7fd07a);
-  color: #fff;
-  font-weight: 600;
+  background: linear-gradient(90deg, var(--black), var(--black-soft));
+  color: var(--yellow);
+  font-weight: 700;
   padding: 8px 18px;
   border-radius: 999px;
   box-shadow: var(--shadow);
@@ -211,7 +234,7 @@ main {
 .card-price {
   font-size: 1.3rem;
   font-weight: 700;
-  color: var(--pink-dark);
+  color: var(--red-dark);
   margin-top: 2px;
 }
 .card-cta {
@@ -231,7 +254,7 @@ main {
   text-align: center;
   font-size: 1.5rem;
   font-weight: 700;
-  color: var(--purple);
+  color: var(--black);
   margin: 0 0 18px;
 }
 .bought-grid .card-bought {
@@ -245,9 +268,9 @@ main {
   position: absolute;
   top: 10px;
   left: 10px;
-  background: linear-gradient(90deg, var(--green), #6fd07a);
-  color: #fff;
-  font-weight: 600;
+  background: linear-gradient(90deg, var(--black), var(--black-soft));
+  color: var(--yellow);
+  font-weight: 700;
   font-size: 0.85rem;
   padding: 6px 12px;
   border-radius: 999px;
@@ -259,27 +282,27 @@ main {
   color: var(--ink);
 }
 .thanks strong {
-  color: var(--pink-dark);
+  color: var(--red-dark);
 }
 
 /* ---- botoes ---- */
 .btn-primary {
-  background: linear-gradient(90deg, var(--pink), var(--orange));
+  background: linear-gradient(90deg, var(--red), var(--orange));
   color: #fff;
   font-family: inherit;
-  font-weight: 600;
+  font-weight: 700;
   font-size: 1rem;
   border: none;
   border-radius: 999px;
   padding: 12px 22px;
   cursor: pointer;
-  box-shadow: 0 8px 18px rgba(255, 95, 162, 0.3);
+  box-shadow: 0 8px 18px rgba(226, 35, 26, 0.32);
   transition: transform 0.12s ease, filter 0.12s ease, box-shadow 0.12s ease;
 }
 .btn-primary:hover:not(:disabled) {
   transform: translateY(-2px);
   filter: brightness(1.05);
-  box-shadow: 0 12px 24px rgba(255, 95, 162, 0.38);
+  box-shadow: 0 12px 24px rgba(226, 35, 26, 0.4);
 }
 .btn-primary:active:not(:disabled) {
   transform: translateY(0);
@@ -301,8 +324,8 @@ main {
   transition: background 0.12s ease, border-color 0.12s ease;
 }
 .btn-secondary:hover {
-  background: #faf3ff;
-  border-color: #e6d4f5;
+  background: #fff5ee;
+  border-color: #f0d4c4;
 }
 
 /* ---- modal ---- */
@@ -379,7 +402,7 @@ main {
   transition: border-color 0.12s ease, transform 0.12s ease;
 }
 .modal-item:hover {
-  border-color: var(--pink);
+  border-color: var(--red);
   transform: translateY(-2px);
 }
 .modal-item.gone {
@@ -413,8 +436,8 @@ main {
   color: var(--muted);
 }
 .modal-item-cta {
-  color: var(--pink-dark);
-  font-weight: 600;
+  color: var(--red-dark);
+  font-weight: 700;
   font-size: 0.85rem;
   white-space: nowrap;
 }
@@ -436,7 +459,7 @@ main {
 }
 .input:focus {
   outline: none;
-  border-color: var(--pink);
+  border-color: var(--red);
 }
 .modal-actions {
   display: flex;

@@ -37,24 +37,27 @@ export default async function Home() {
   return (
     <main>
       <div className="decor" aria-hidden="true">
-        <span style={{ left: "6%", top: "12%" }}>🎈</span>
-        <span style={{ left: "84%", top: "8%" }}>🎈</span>
-        <span style={{ left: "18%", top: "70%" }}>⭐</span>
-        <span style={{ left: "72%", top: "64%" }}>🎈</span>
-        <span style={{ left: "48%", top: "20%" }}>🧸</span>
-        <span style={{ left: "92%", top: "40%" }}>⭐</span>
-        <span style={{ left: "3%", top: "45%" }}>🎁</span>
+        <span style={{ left: "6%", top: "12%" }}>🏎️</span>
+        <span style={{ left: "84%", top: "8%" }}>🏁</span>
+        <span style={{ left: "18%", top: "70%" }}>🚦</span>
+        <span style={{ left: "72%", top: "64%" }}>⚡</span>
+        <span style={{ left: "48%", top: "20%" }}>🛞</span>
+        <span style={{ left: "92%", top: "40%" }}>🏆</span>
+        <span style={{ left: "3%", top: "45%" }}>🚗</span>
       </div>
 
+      <div className="checkered" aria-hidden="true" />
+
       <header className="hero">
-        <p className="hero-kicker">Festa de 2 aninhos 🎉</p>
-        <h1 className="hero-title">Lista de Presentinhos</h1>
+        <p className="hero-kicker">Festa de 2 aninhos do Noah 🏎️</p>
+        <h1 className="hero-title">Pista de Presentes do Noah</h1>
         <p className="hero-sub">
-          Escolha um presentinho para a pequena. Obrigado pelo carinho! 💛
+          Escolha um presentinho para o nosso pequeno piloto. Obrigado pela
+          volta de largada! 🏁
         </p>
         {boughtCount > 0 && (
           <p className="hero-badge">
-            {boughtCount} {boughtCount === 1 ? "presente já foi escolhido" : "presentes já foram escolhidos"} 🎁
+            {boughtCount} {boughtCount === 1 ? "presente já foi escolhido" : "presentes já foram escolhidos"} 🏁
           </p>
         )}
       </header>
@@ -62,7 +65,7 @@ export default async function Home() {
       <GiftBoard items={view} confirmedItemIds={confirmedItemIds} />
 
       <footer className="footer">
-        <p>Feito com 💛 para um aniversário muito especial.</p>
+        <p>Feito com 💛 para o Noah virar 2 em grande estilo. 🏎️🏁</p>
       </footer>
     </main>
   );

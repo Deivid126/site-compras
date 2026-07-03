@@ -10,8 +10,8 @@ const fredoka = Fredoka({
 });
 
 export const metadata: Metadata = {
-  title: "Lista de Presentinhos 🎈",
-  description: "Lista de presentes para o aniversario de 2 aninhos.",
+  title: "Pista de Presentes do Noah 🏎️",
+  description: "Lista de presentes para o aniversário de 2 aninhos do Noah — tema Carros / Relâmpago McQueen.",
 };
 
 export default function RootLayout({

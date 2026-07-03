@@ -132,14 +132,14 @@ export default function GiftBoard({
         </section>
       ) : (
         <section className="board">
-          <p className="empty">Tudo escolhido! Muito obrigado a todos! 🎉💛</p>
+          <p className="empty">Toda a pista já foi! Muito obrigado a todos! 🏁💛</p>
         </section>
       )}
 
       {boughtItems.length > 0 && (
         <section className="bought-section" aria-label="Presentes ja escolhidos">
           <h2 className="bought-title">
-            🎁 Presentes ja escolhidos 🎁
+            🏁 Presentes já largaram 🏁
           </h2>
           <div className="grid bought-grid">
             {boughtItems.map((i) => (

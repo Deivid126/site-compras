@@ -29,7 +29,7 @@ export default function GiftCard({
           rel="noopener noreferrer"
           onClick={onComprar}
         >
-          Comprar 🛒
+          Comprar 🏎️
         </a>
       </div>
     </article>

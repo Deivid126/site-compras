@@ -60,8 +60,8 @@ export default function ReturningModal({
       <div className="modal">
         {nothingToAsk && (
           <>
-            <h2 id="modal-title">Que bom te ver de novo! 🎈</h2>
-            <p>Tudo certo por aqui. Obrigado pelo carinho! 💛</p>
+            <h2 id="modal-title">Que bom te ver de novo! 🏎️</h2>
+            <p>Tudo certo por aqui. Obrigado pela volta! 🏁</p>
             <button className="btn-primary" onClick={onClose}>
               Fechar
             </button>
@@ -70,7 +70,7 @@ export default function ReturningModal({
 
         {!nothingToAsk && !selected && (
           <>
-            <h2 id="modal-title">Voce voltou! 🎉</h2>
+            <h2 id="modal-title">Você voltou! 🏁</h2>
             <p>
               Voce se interessou por alguns presentinhos. Comprou algum deles?
             </p>
@@ -117,7 +117,7 @@ export default function ReturningModal({
 
         {!nothingToAsk && selected && (
           <form onSubmit={submit}>
-            <h2>Oba! 🎁</h2>
+            <h2>Oba! 🏎️</h2>
             <p>
               Voce comprou <strong>{selected.title}</strong> (
               {formatBRL(selected.priceCents)}).
@@ -141,7 +141,7 @@ export default function ReturningModal({
             {status === "conflict" && (
               <p className="msg msg-conflict">
                 Ah, alguém acabou comprando esse presente agora! Obrigado mesmo
-                assim 💛
+                assim 🏁
               </p>
             )}
             {status === "error" && (

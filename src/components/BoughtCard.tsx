@@ -7,7 +7,7 @@ export default function BoughtCard({ item }: { item: ItemView }) {
       <div className="card-img-wrap">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img src={item.imageUrl} alt={item.title} loading="lazy" />
-        <span className="badge">Comprado! 🎉</span>
+        <span className="badge">Comprado! 🏁</span>
       </div>
       <div className="card-body">
         <h3 className="card-title">{item.title}</h3>
