@@ -403,6 +403,13 @@ main {
   color: var(--yellow);
   box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
 }
+@media (max-width: 560px) {
+  .card-meta {
+    flex-direction: column-reverse;
+    align-items: flex-start;
+    gap: 6px;
+  }
+}
 .card-cta {
   margin-top: auto;
   text-align: center;
