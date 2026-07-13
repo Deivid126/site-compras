@@ -46,21 +46,59 @@ export default function GiftBoard({
   const [confirmed, setConfirmed] = useState<number[]>(confirmedItemIds);
   const [modalOpen, setModalOpen] = useState(false);
   const didInit = useRef(false);
+  const hadFocus = useRef(false);
+  const confirmedRef = useRef(confirmed);
 
   const allItems = groups.flatMap((g) => g.items);
 
   useEffect(() => {
-    if (didInit.current) return;
-    didInit.current = true;
+    confirmedRef.current = confirmed;
+  }, [confirmed]);
+
+  function checkPending() {
     const c = readClicked();
     setClicked(c);
     const pending = c.filter(
       (id) =>
-        !confirmed.includes(id) &&
+        !confirmedRef.current.includes(id) &&
         allItems.some((i) => i.id === id && i.active),
     );
-    // eslint-disable-next-line react-hooks/set-state-in-effect
     if (pending.length) setModalOpen(true);
+  }
+
+  useEffect(() => {
+    if (didInit.current) return;
+    didInit.current = true;
+    checkPending();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(() => {
+    function onVisibility() {
+      if (document.visibilityState === "hidden") {
+        hadFocus.current = true;
+      } else if (hadFocus.current) {
+        hadFocus.current = false;
+        checkPending();
+      }
+    }
+    function onFocus() {
+      if (hadFocus.current) {
+        hadFocus.current = false;
+        checkPending();
+      }
+    }
+    function onBlur() {
+      hadFocus.current = true;
+    }
+    document.addEventListener("visibilitychange", onVisibility);
+    window.addEventListener("focus", onFocus);
+    window.addEventListener("blur", onBlur);
+    return () => {
+      document.removeEventListener("visibilitychange", onVisibility);
+      window.removeEventListener("focus", onFocus);
+      window.removeEventListener("blur", onBlur);
+    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

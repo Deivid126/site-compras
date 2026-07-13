@@ -166,6 +166,111 @@ main {
   box-shadow: var(--shadow);
 }
 
+/* ---- size banner ---- */
+.size-banner {
+  position: relative;
+  z-index: 1;
+  margin: 18px auto 6px;
+  padding: 18px 22px;
+  border-radius: var(--radius);
+  background: linear-gradient(135deg, #fff8e2 0%, #ffe9c2 100%);
+  border: 2px solid var(--yellow);
+  box-shadow: var(--shadow);
+}
+.size-banner-head {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 12px;
+}
+.size-banner-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--black);
+}
+.size-banner-sub {
+  font-size: 0.88rem;
+  color: var(--muted);
+  font-weight: 600;
+}
+.size-banner-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+.size-row {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex: 1 1 200px;
+  background: #fff;
+  border-radius: 16px;
+  padding: 12px 14px;
+  border: 2px solid #f5e6c8;
+  min-width: 200px;
+}
+.size-row-empty {
+  opacity: 0.7;
+  background: #fafafa;
+  border-style: dashed;
+}
+.size-row-label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 700;
+  color: var(--black);
+}
+.size-row-emoji {
+  font-size: 1.1rem;
+  line-height: 1;
+}
+.size-row-values {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}
+.size-chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 38px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--red), var(--orange));
+  color: #fff;
+  font-weight: 700;
+  font-size: 1rem;
+  box-shadow: 0 4px 10px rgba(226, 35, 26, 0.25);
+}
+.size-chip-tbd {
+  background: #f0e6e0;
+  color: var(--muted);
+  box-shadow: none;
+  font-weight: 600;
+  font-style: italic;
+}
+.size-row-note {
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+@media (max-width: 560px) {
+  .size-banner {
+    padding: 14px 14px;
+    margin: 12px auto 4px;
+  }
+  .size-banner-grid {
+    flex-direction: column;
+    gap: 10px;
+  }
+  .size-row {
+    min-width: 0;
+  }
+}
+
 /* ---- board / grid ---- */
 .board {
   position: relative;

@@ -2,6 +2,7 @@ import { cookies } from "next/headers";
 import { prisma } from "@/lib/prisma";
 import GiftBoard from "@/components/GiftBoard";
 import CategoryHeader, { type CategoryRef } from "@/components/CategoryHeader";
+import SizeBanner from "@/components/SizeBanner";
 import { categoryId } from "@/lib/format";
 import type { ItemView } from "@/lib/types";
 import { UNCATEGORIZED } from "@/lib/types";
@@ -89,6 +90,8 @@ export default async function Home() {
           </p>
         )}
       </header>
+
+      <SizeBanner />
 
       <GiftBoard groups={groups} confirmedItemIds={confirmedItemIds} />
 
