@@ -39,6 +39,7 @@ export async function POST(
     const { url } = await put(pathname, file, {
       access: "public",
       addRandomSuffix: false,
+      allowOverwrite: true,
       contentType,
       token: process.env.BLOB_READ_WRITE_TOKEN,
     });

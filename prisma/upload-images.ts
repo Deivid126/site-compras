@@ -91,6 +91,7 @@ async function main() {
       const { url } = await put(pathname, body, {
         access: "public",
         addRandomSuffix: false,
+        allowOverwrite: true,
         contentType,
         token: process.env.BLOB_READ_WRITE_TOKEN,
       });
