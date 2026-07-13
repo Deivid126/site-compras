@@ -43,7 +43,7 @@ export async function POST(
       data: { imageUrl: url },
     });
     clearAll();
-    return NextResponse.redirect(new URL(`/admin/items/${id}`, req.url));
+    return NextResponse.json({ ok: true, url });
   } catch (e) {
     return NextResponse.json(
       { error: e instanceof Error ? e.message : "server" },

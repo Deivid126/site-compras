@@ -3,6 +3,7 @@ import { prisma } from "@/lib/prisma";
 import Link from "next/link";
 import PriceInput from "@/components/PriceInput";
 import DeleteButton from "@/components/admin/DeleteButton";
+import ImageUploadForm from "@/components/admin/ImageUploadForm";
 
 export const dynamic = "force-dynamic";
 
@@ -132,24 +133,7 @@ export default async function EditItemPage({
           <p className="adm-no-img">Nenhuma imagem cadastrada.</p>
         )}
 
-        <form
-          action={`/api/admin/items/${item.id}/image`}
-          method="POST"
-          encType="multipart/form-data"
-          className="adm-inline-form"
-        >
-          <input
-            id="image"
-            name="image"
-            type="file"
-            accept="image/jpeg,image/png,image/webp,image/gif,image/avif"
-            required
-            className="adm-file-input"
-          />
-          <button type="submit" className="adm-btn adm-btn-primary">
-            Enviar imagem
-          </button>
-        </form>
+        <ImageUploadForm action={`/api/admin/items/${item.id}/image`} />
       </div>
 
       <div className="adm-section adm-danger-zone">

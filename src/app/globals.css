@@ -1458,6 +1458,11 @@ textarea.adm-input {
   align-items: center;
   flex-wrap: wrap;
 }
+.adm-upload-error {
+  font-size: 0.82rem;
+  color: var(--adm-danger);
+  font-weight: 600;
+}
 
 /* ---- danger zone ---- */
 .adm-danger-zone {
