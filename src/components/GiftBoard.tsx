@@ -13,20 +13,20 @@ import ReturningModal from "./ReturningModal";
 
 const CLICKED_KEY = "clickedItems";
 
-function readClicked(): number[] {
+function readClicked(): string[] {
   if (typeof window === "undefined") return [];
   try {
     const raw = localStorage.getItem(CLICKED_KEY);
     const parsed = raw ? (JSON.parse(raw) as unknown) : [];
     return Array.isArray(parsed)
-      ? parsed.filter((n): n is number => typeof n === "number")
+      ? parsed.filter((n): n is string => typeof n === "string")
       : [];
   } catch {
     return [];
   }
 }
 
-function writeClicked(ids: number[]) {
+function writeClicked(ids: string[]) {
   try {
     localStorage.setItem(CLICKED_KEY, JSON.stringify(ids));
   } catch {
@@ -39,11 +39,11 @@ export default function GiftBoard({
   confirmedItemIds,
 }: {
   groups: CategoryGroup[];
-  confirmedItemIds: number[];
+  confirmedItemIds: string[];
 }) {
   const router = useRouter();
-  const [clicked, setClicked] = useState<number[]>([]);
-  const [confirmed, setConfirmed] = useState<number[]>(confirmedItemIds);
+  const [clicked, setClicked] = useState<string[]>([]);
+  const [confirmed, setConfirmed] = useState<string[]>(confirmedItemIds);
   const [modalOpen, setModalOpen] = useState(false);
   const didInit = useRef(false);
   const hadFocus = useRef(false);
@@ -102,7 +102,7 @@ export default function GiftBoard({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  function recordClick(id: number) {
+  function recordClick(id: string) {
     setClicked((prev) => {
       if (prev.includes(id)) return prev;
       const next = [...prev, id];
@@ -112,7 +112,7 @@ export default function GiftBoard({
   }
 
   async function handleConfirm(
-    itemId: number,
+    itemId: string,
     buyerName: string,
   ): Promise<ConfirmResult> {
     let result: ConfirmResult;

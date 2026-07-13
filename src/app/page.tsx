@@ -29,7 +29,7 @@ export default async function Home() {
     getItems() ?? (await prisma.item.findMany({ include: { purchases: true } }));
   setItems(items);
 
-  let confirmedItemIds: number[];
+  let confirmedItemIds: string[];
   if (visitorId) {
     const cached = getVisitorPurchases(visitorId);
     if (cached) {
@@ -47,7 +47,7 @@ export default async function Home() {
   }
 
   items.sort(
-    (a, b) => Number(b.active) - Number(a.active) || a.id - b.id,
+    (a, b) => Number(b.active) - Number(a.active) || a.id.localeCompare(b.id),
   );
 
   const view: ItemView[] = items.map((i) => ({
@@ -58,6 +58,7 @@ export default async function Home() {
     priceCents: i.priceCents,
     imageUrl: i.imageUrl,
     storeUrl: i.storeUrl,
+    size: i.size,
     active: i.active,
     buyerName: i.purchases[0]?.buyerName ?? null,
     isMine: i.purchases.some((p) => p.visitorId === visitorId),

@@ -8,7 +8,7 @@ type Entry<T> = { value: T; expiresAt: number };
 
 type CacheShape = {
   items?: Entry<ItemWithPurchases[]>;
-  visitors: Map<string, Entry<number[]>>;
+  visitors: Map<string, Entry<string[]>>;
 };
 
 const TTL_MS = 60_000;
@@ -38,12 +38,12 @@ export function setItems(items: ItemWithPurchases[]): void {
 
 export function getVisitorPurchases(
   vid: string,
-): number[] | undefined {
+): string[] | undefined {
   const e = cache.visitors.get(vid);
   return alive(e) ? e.value : undefined;
 }
 
-export function setVisitorPurchases(vid: string, ids: number[]): void {
+export function setVisitorPurchases(vid: string, ids: string[]): void {
   cache.visitors.set(vid, {
     value: ids,
     expiresAt: Date.now() + TTL_MS,

@@ -17,10 +17,10 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "bad-json" }, { status: 400 });
   }
 
-  const itemId = Number(body?.itemId);
+  const itemId = String(body?.itemId ?? "").trim();
   const buyerName = String(body?.buyerName ?? "").trim();
 
-  if (!Number.isInteger(itemId) || itemId <= 0 || !buyerName) {
+  if (!itemId || !buyerName) {
     return NextResponse.json({ error: "invalid" }, { status: 400 });
   }
 

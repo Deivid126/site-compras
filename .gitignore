@@ -19,6 +19,10 @@ next-env.d.ts
 # prisma compiled seed
 prisma/dist/
 
+# imagens locais para upload (binarios nao entram no repo; vivem no Vercel Blob)
+prisma/images/*
+!prisma/images/.gitkeep
+
 # docker local data
 .postgres-data/
 

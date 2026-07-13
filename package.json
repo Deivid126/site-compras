@@ -12,13 +12,15 @@
     "prisma:push": "prisma db push",
     "db:deploy": "prisma db push && tsx prisma/seed.ts",
     "seed": "tsx prisma/seed.ts",
-    "seed:compiled": "node prisma/dist/seed.js"
+    "seed:compiled": "node prisma/dist/seed.js",
+    "upload-images": "tsx prisma/upload-images.ts"
   },
   "prisma": {
     "seed": "tsx prisma/seed.ts"
   },
   "dependencies": {
     "@prisma/client": "^6.1.0",
+    "@vercel/blob": "^2.6.1",
     "canvas-confetti": "^1.9.3",
     "next": "^16.2.9",
     "prisma": "^6.1.0",

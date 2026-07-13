@@ -379,6 +379,9 @@ main {
   color: var(--muted);
   line-height: 1.35;
 }
+.card-size {
+  margin: 0;
+}
 .card-price {
   font-size: 1.3rem;
   font-weight: 700;

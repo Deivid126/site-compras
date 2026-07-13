@@ -8,13 +8,14 @@ datasource db {
 }
 
 model Item {
-  id          Int        @id @default(autoincrement())
+  id          String     @id @default(uuid())
   title       String
   description String?
   category    String?
   priceCents  Int
   imageUrl    String
-  storeUrl    String
+  storeUrl    String     @unique
+  size        String     @default("")
   active      Boolean    @default(true)
   createdAt   DateTime   @default(now())
   purchases   Purchase[]
@@ -24,7 +25,7 @@ model Item {
 
 model Purchase {
   id         Int      @id @default(autoincrement())
-  itemId     Int      @unique
+  itemId     String     @unique
   item       Item     @relation(fields: [itemId], references: [id])
   visitorId  String
   buyerName  String

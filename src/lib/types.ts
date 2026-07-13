@@ -1,11 +1,12 @@
 export type ItemView = {
-  id: number;
+  id: string;
   title: string;
   description: string | null;
   category: string | null;
   priceCents: number;
   imageUrl: string;
   storeUrl: string;
+  size: string;
   active: boolean;
   buyerName: string | null;
   isMine: boolean;

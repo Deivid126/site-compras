@@ -12,9 +12,9 @@ export default function ReturningModal({
   onClose,
 }: {
   items: ItemView[];
-  clicked: number[];
-  confirmed: number[];
-  onConfirm: (itemId: number, buyerName: string) => Promise<ConfirmResult>;
+  clicked: string[];
+  confirmed: string[];
+  onConfirm: (itemId: string, buyerName: string) => Promise<ConfirmResult>;
   onClose: () => void;
 }) {
   const pending = clicked
@@ -25,7 +25,7 @@ export default function ReturningModal({
   const activePending = pending.filter((i) => i.active);
   const gonePending = pending.filter((i) => !i.active);
 
-  const [selectedId, setSelectedId] = useState<number | null>(null);
+  const [selectedId, setSelectedId] = useState<string | null>(null);
   const [name, setName] = useState("");
   const [status, setStatus] = useState<
     "idle" | "submitting" | "conflict" | "error"

@@ -27,6 +27,11 @@ export default function GiftCard({
         {item.description && (
           <p className="card-desc">{item.description}</p>
         )}
+        {item.size && (
+          <p className="card-size">
+            <span className="size-chip">Tamanho: {item.size}</span>
+          </p>
+        )}
         <a
           className="btn-primary card-cta"
           href={item.storeUrl}
