@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { cookies } from "next/headers";
 import { prisma } from "@/lib/prisma";
+import { clearAll } from "@/lib/cache";
 
 export async function POST(req: NextRequest) {
   const cookieStore = await cookies();
@@ -39,6 +40,8 @@ export async function POST(req: NextRequest) {
       where: { id: itemId },
       data: { active: false },
     });
+
+    clearAll();
 
     return NextResponse.json({ ok: true });
   } catch (e: unknown) {

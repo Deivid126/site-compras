@@ -1,5 +1,11 @@
 import { cookies } from "next/headers";
 import { prisma } from "@/lib/prisma";
+import {
+  getItems,
+  setItems,
+  getVisitorPurchases,
+  setVisitorPurchases,
+} from "@/lib/cache";
 import GiftBoard from "@/components/GiftBoard";
 import CategoryHeader, { type CategoryRef } from "@/components/CategoryHeader";
 import SizeBanner from "@/components/SizeBanner";
@@ -19,12 +25,26 @@ export default async function Home() {
   const cookieStore = await cookies();
   const visitorId = cookieStore.get("vid")?.value ?? "";
 
-  const items = await prisma.item.findMany({ include: { purchases: true } });
-  const purchases = await prisma.purchase.findMany({
-    where: { visitorId },
-    select: { itemId: true },
-  });
-  const confirmedItemIds = purchases.map((p) => p.itemId);
+  const items =
+    getItems() ?? (await prisma.item.findMany({ include: { purchases: true } }));
+  setItems(items);
+
+  let confirmedItemIds: number[];
+  if (visitorId) {
+    const cached = getVisitorPurchases(visitorId);
+    if (cached) {
+      confirmedItemIds = cached;
+    } else {
+      const purchases = await prisma.purchase.findMany({
+        where: { visitorId },
+        select: { itemId: true },
+      });
+      confirmedItemIds = purchases.map((p) => p.itemId);
+      setVisitorPurchases(visitorId, confirmedItemIds);
+    }
+  } else {
+    confirmedItemIds = [];
+  }
 
   items.sort(
     (a, b) => Number(b.active) - Number(a.active) || a.id - b.id,
