@@ -26,7 +26,11 @@ export default async function Home() {
   const visitorId = cookieStore.get("vid")?.value ?? "";
 
   const items =
-    getItems() ?? (await prisma.item.findMany({ include: { purchases: true } }));
+    getItems() ??
+    (await prisma.item.findMany({
+      where: { deleted: false },
+      include: { purchases: true },
+    }));
   setItems(items);
 
   let confirmedItemIds: string[];

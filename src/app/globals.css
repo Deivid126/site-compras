@@ -863,3 +863,230 @@ main {
     padding-bottom: 2px;
   }
 }
+
+/* ---- admin ---- */
+.admin-page {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 24px 20px 60px;
+}
+.admin-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 28px;
+}
+.admin-header h1 {
+  margin: 0;
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--black);
+}
+.admin-sub {
+  margin: 4px 0 0;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+.admin-header-actions {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+.admin-table-wrap {
+  overflow-x: auto;
+}
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.88rem;
+}
+.admin-table th {
+  text-align: left;
+  padding: 10px 8px;
+  border-bottom: 2px solid var(--line);
+  font-weight: 700;
+  color: var(--black);
+  white-space: nowrap;
+}
+.admin-table td {
+  padding: 10px 8px;
+  border-bottom: 1px solid var(--line);
+  vertical-align: middle;
+}
+.admin-table tr:hover td {
+  background: #fff8f0;
+}
+.admin-thumb {
+  width: 48px;
+}
+.admin-thumb img {
+  width: 44px;
+  height: 44px;
+  border-radius: 8px;
+  object-fit: cover;
+}
+.admin-thumb-placeholder {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 8px;
+  background: #f0e6e0;
+  font-size: 1.4rem;
+}
+.admin-badge {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-size: 0.76rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+.admin-badge-active {
+  background: #e8f5e9;
+  color: #2e7d32;
+}
+.admin-badge-bought {
+  background: #fff3e0;
+  color: #e65100;
+}
+.admin-actions {
+  display: flex;
+  gap: 12px;
+  white-space: nowrap;
+}
+.admin-link {
+  color: var(--red-dark);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.85rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  font-family: inherit;
+}
+.admin-link:hover {
+  text-decoration: underline;
+}
+.admin-link-danger {
+  color: #c62828;
+}
+.admin-empty {
+  text-align: center;
+  color: var(--muted);
+  padding: 40px 0;
+}
+.admin-form {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-width: 480px;
+}
+.admin-form-wide {
+  max-width: 600px;
+  margin-top: 20px;
+}
+.admin-form .btn-primary {
+  margin-top: 12px;
+}
+.admin-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+.admin-checkbox input {
+  width: 18px;
+  height: 18px;
+}
+.admin-buyer-info {
+  background: #fff3e0;
+  border: 1px solid #ffe0b2;
+  border-radius: 12px;
+  padding: 12px 16px;
+  margin-bottom: 20px;
+  font-size: 0.92rem;
+  color: #e65100;
+}
+.admin-image-section {
+  margin-top: 40px;
+  padding-top: 24px;
+  border-top: 1px solid var(--line);
+}
+.admin-section-title {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--black);
+  margin: 0 0 14px;
+}
+.admin-current-img img {
+  max-width: 200px;
+  border-radius: 12px;
+  margin-bottom: 14px;
+}
+.admin-no-img {
+  color: var(--muted);
+  margin: 0 0 14px;
+}
+.admin-danger-zone {
+  margin-top: 40px;
+  padding: 20px;
+  border: 2px solid #ffcdd2;
+  border-radius: 12px;
+  background: #fff5f5;
+}
+.btn-danger {
+  background: #c62828;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 999px;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: inherit;
+}
+.btn-danger:hover {
+  background: #b71c1c;
+}
+
+/* ---- admin login ---- */
+.admin-login-page {
+  min-height: 70vh;
+  display: grid;
+  place-items: center;
+  padding: 20px;
+}
+.admin-login-card {
+  background: #fff;
+  border: 2px solid var(--line);
+  border-radius: 20px;
+  padding: 32px 28px;
+  max-width: 380px;
+  width: 100%;
+  box-shadow: var(--shadow);
+}
+.admin-login-title {
+  margin: 0;
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--black);
+}
+.admin-login-sub {
+  margin: 4px 0 20px;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+.admin-back {
+  display: block;
+  text-align: center;
+  margin-top: 16px;
+  color: var(--muted);
+  text-decoration: none;
+  font-size: 0.85rem;
+}
+.admin-back:hover {
+  text-decoration: underline;
+}

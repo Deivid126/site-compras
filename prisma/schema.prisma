@@ -17,6 +17,7 @@ model Item {
   storeUrl    String     @unique
   size        String     @default("")
   active      Boolean    @default(true)
+  deleted     Boolean    @default(false)
   createdAt   DateTime   @default(now())
   purchases   Purchase[]
 
