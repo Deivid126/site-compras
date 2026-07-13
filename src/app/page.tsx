@@ -3,6 +3,7 @@ import { prisma } from "@/lib/prisma";
 import GiftBoard from "@/components/GiftBoard";
 import CategoryHeader, { type CategoryRef } from "@/components/CategoryHeader";
 import SizeBanner from "@/components/SizeBanner";
+import ScrollTopButton from "@/components/ScrollTopButton";
 import { categoryId } from "@/lib/format";
 import type { ItemView } from "@/lib/types";
 import { UNCATEGORIZED } from "@/lib/types";
@@ -98,6 +99,8 @@ export default async function Home() {
       <footer className="footer">
         <p>Feito com 💛 para o Noah virar 2 em grande estilo. 🏎️🏁</p>
       </footer>
+
+      <ScrollTopButton />
     </main>
   );
 }

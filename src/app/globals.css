@@ -655,6 +655,59 @@ main {
   font-size: 0.9rem;
 }
 
+/* ---- scroll to top ---- */
+.scroll-top {
+  position: fixed;
+  right: 22px;
+  bottom: 22px;
+  z-index: 45;
+  width: 50px;
+  height: 50px;
+  border: none;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--red), var(--orange));
+  color: #fff;
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1;
+  cursor: pointer;
+  box-shadow: 0 8px 20px rgba(226, 35, 26, 0.4);
+  display: grid;
+  place-items: center;
+  transition: opacity 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+}
+.scroll-top:hover {
+  transform: translateY(-3px) scale(1.06);
+  box-shadow: 0 12px 26px rgba(226, 35, 26, 0.5);
+}
+.scroll-top:focus-visible {
+  outline: 2px solid var(--yellow);
+  outline-offset: 3px;
+}
+.scroll-top span {
+  display: block;
+  transform: translateY(-1px);
+}
+
+@media (max-width: 560px) {
+  .scroll-top {
+    right: 16px;
+    bottom: 16px;
+    width: 44px;
+    height: 44px;
+    font-size: 1.3rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scroll-top {
+    transition: opacity 0.25s ease;
+  }
+  .scroll-top:hover {
+    transform: none;
+  }
+}
+
 /* ---- mobile ---- */
 @media (max-width: 560px) {
   .grid {
