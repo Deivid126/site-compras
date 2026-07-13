@@ -19,7 +19,7 @@ export default function BoughtCard({ item }: { item: ItemView }) {
         <h3 className="card-title">{item.title}</h3>
         {item.size && (
           <p className="card-size">
-            <span className="size-chip">Tamanho: {item.size}</span>
+            <span className="size-chip card-size-chip">Tam: {item.size}</span>
           </p>
         )}
         {item.buyerName && (

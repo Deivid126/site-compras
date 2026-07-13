@@ -2,6 +2,7 @@
 
 import type { ItemView } from "@/lib/types";
 import { categoryEmoji, hasImage } from "@/lib/categories";
+import { formatBRL } from "@/lib/format";
 
 export default function GiftCard({
   item,
@@ -27,10 +28,15 @@ export default function GiftCard({
         {item.description && (
           <p className="card-desc">{item.description}</p>
         )}
-        {item.size && (
-          <p className="card-size">
-            <span className="size-chip">Tamanho: {item.size}</span>
-          </p>
+        {(item.priceCents > 0 || item.size) && (
+          <div className="card-meta">
+            {item.priceCents > 0 && (
+              <span className="card-price">{formatBRL(item.priceCents)}</span>
+            )}
+            {item.size && (
+              <span className="size-chip card-size-chip">Tam: {item.size}</span>
+            )}
+          </div>
         )}
         <a
           className="btn-primary card-cta"

@@ -382,11 +382,26 @@ main {
 .card-size {
   margin: 0;
 }
+.card-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-top: 2px;
+}
 .card-price {
   font-size: 1.3rem;
   font-weight: 700;
-  color: var(--red-dark);
-  margin-top: 2px;
+  color: var(--black);
+  margin: 0;
+}
+.card-size-chip {
+  min-width: auto;
+  padding: 4px 10px;
+  font-size: 0.8rem;
+  background: linear-gradient(90deg, var(--black), var(--black-soft));
+  color: var(--yellow);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
 }
 .card-cta {
   margin-top: auto;

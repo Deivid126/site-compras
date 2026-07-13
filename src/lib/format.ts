@@ -11,3 +11,10 @@ export function slugify(value: string): string {
 export function categoryId(name: string): string {
   return `cat-${slugify(name)}`;
 }
+
+export function formatBRL(priceCents: number): string {
+  return (priceCents / 100).toLocaleString("pt-BR", {
+    style: "currency",
+    currency: "BRL",
+  });
+}
