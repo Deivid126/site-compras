@@ -1,7 +1,7 @@
 "use client";
 
 import type { ItemView } from "@/lib/types";
-import { formatBRL } from "@/lib/format";
+import { categoryEmoji, hasImage } from "@/lib/categories";
 
 export default function GiftCard({
   item,
@@ -13,15 +13,20 @@ export default function GiftCard({
   return (
     <article className="card">
       <div className="card-img-wrap">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src={item.imageUrl} alt={item.title} loading="lazy" />
+        {hasImage(item) ? (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img src={item.imageUrl} alt={item.title} loading="lazy" />
+        ) : (
+          <div className="card-img-placeholder" aria-hidden="true">
+            <span>{categoryEmoji(item.category)}</span>
+          </div>
+        )}
       </div>
       <div className="card-body">
         <h3 className="card-title">{item.title}</h3>
         {item.description && (
           <p className="card-desc">{item.description}</p>
         )}
-        <div className="card-price">{formatBRL(item.priceCents)}</div>
         <a
           className="btn-primary card-cta"
           href={item.storeUrl}

@@ -1,17 +1,22 @@
 import type { ItemView } from "@/lib/types";
-import { formatBRL } from "@/lib/format";
+import { categoryEmoji, hasImage } from "@/lib/categories";
 
 export default function BoughtCard({ item }: { item: ItemView }) {
   return (
-    <article className="card card-bought" aria-disabled="true">
+    <article className="card card-bought">
       <div className="card-img-wrap">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src={item.imageUrl} alt={item.title} loading="lazy" />
+        {hasImage(item) ? (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img src={item.imageUrl} alt={item.title} loading="lazy" />
+        ) : (
+          <div className="card-img-placeholder" aria-hidden="true">
+            <span>{categoryEmoji(item.category)}</span>
+          </div>
+        )}
         <span className="badge">Comprado! 🏁</span>
       </div>
       <div className="card-body">
         <h3 className="card-title">{item.title}</h3>
-        <div className="card-price">{formatBRL(item.priceCents)}</div>
         {item.buyerName && (
           <p className="thanks">
             Obrigado, <strong>{item.buyerName}</strong>! 💛

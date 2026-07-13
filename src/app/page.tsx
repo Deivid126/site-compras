@@ -1,9 +1,17 @@
 import { cookies } from "next/headers";
 import { prisma } from "@/lib/prisma";
 import GiftBoard from "@/components/GiftBoard";
+import CategoryHeader, { type CategoryRef } from "@/components/CategoryHeader";
+import { categoryId } from "@/lib/format";
 import type { ItemView } from "@/lib/types";
+import { UNCATEGORIZED } from "@/lib/types";
 
 export const dynamic = "force-dynamic";
+
+export type CategoryGroup = {
+  name: string;
+  items: ItemView[];
+};
 
 export default async function Home() {
   const cookieStore = await cookies();
@@ -24,6 +32,7 @@ export default async function Home() {
     id: i.id,
     title: i.title,
     description: i.description,
+    category: i.category,
     priceCents: i.priceCents,
     imageUrl: i.imageUrl,
     storeUrl: i.storeUrl,
@@ -34,8 +43,27 @@ export default async function Home() {
 
   const boughtCount = view.filter((i) => !i.active).length;
 
+  const groups: CategoryGroup[] = (() => {
+    const map = new Map<string, ItemView[]>();
+    for (const item of view) {
+      const name = item.category?.trim() ? item.category.trim() : UNCATEGORIZED;
+      const arr = map.get(name) ?? [];
+      arr.push(item);
+      map.set(name, arr);
+    }
+    const out = [...map.entries()].map(([name, items]) => ({ name, items }));
+    out.sort((a, b) => (a.name === UNCATEGORIZED ? 1 : b.name === UNCATEGORIZED ? -1 : a.name.localeCompare(b.name, "pt-BR")));
+    return out;
+  })();
+
+  const headerCategories: CategoryRef[] = groups.map((g) => ({
+    name: g.name,
+    id: categoryId(g.name),
+  }));
+
   return (
     <main>
+      <CategoryHeader categories={headerCategories} />
       <div className="decor" aria-hidden="true">
         <span style={{ left: "6%", top: "12%" }}>🏎️</span>
         <span style={{ left: "84%", top: "8%" }}>🏁</span>
@@ -62,7 +90,7 @@ export default async function Home() {
         )}
       </header>
 
-      <GiftBoard items={view} confirmedItemIds={confirmedItemIds} />
+      <GiftBoard groups={groups} confirmedItemIds={confirmedItemIds} />
 
       <footer className="footer">
         <p>Feito com 💛 para o Noah virar 2 em grande estilo. 🏎️🏁</p>

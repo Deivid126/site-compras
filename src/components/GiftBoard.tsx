@@ -4,6 +4,9 @@ import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import confetti from "canvas-confetti";
 import type { ItemView, ConfirmResult } from "@/lib/types";
+import { categoryId } from "@/lib/format";
+import { categoryEmoji } from "@/lib/categories";
+import type { CategoryGroup } from "@/app/page";
 import GiftCard from "./GiftCard";
 import BoughtCard from "./BoughtCard";
 import ReturningModal from "./ReturningModal";
@@ -32,10 +35,10 @@ function writeClicked(ids: number[]) {
 }
 
 export default function GiftBoard({
-  items,
+  groups,
   confirmedItemIds,
 }: {
-  items: ItemView[];
+  groups: CategoryGroup[];
   confirmedItemIds: number[];
 }) {
   const router = useRouter();
@@ -43,6 +46,8 @@ export default function GiftBoard({
   const [confirmed, setConfirmed] = useState<number[]>(confirmedItemIds);
   const [modalOpen, setModalOpen] = useState(false);
   const didInit = useRef(false);
+
+  const allItems = groups.flatMap((g) => g.items);
 
   useEffect(() => {
     if (didInit.current) return;
@@ -52,8 +57,9 @@ export default function GiftBoard({
     const pending = c.filter(
       (id) =>
         !confirmed.includes(id) &&
-        items.some((i) => i.id === id && i.active),
+        allItems.some((i) => i.id === id && i.active),
     );
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     if (pending.length) setModalOpen(true);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -113,22 +119,36 @@ export default function GiftBoard({
     setModalOpen(false);
   }
 
-  const activeItems = items.filter((i) => i.active);
-  const boughtItems = items.filter((i) => !i.active);
+  const activeGroups = groups
+    .map((g) => ({
+      ...g,
+      items: g.items.filter((i) => i.active),
+    }))
+    .filter((g) => g.items.length > 0);
+
+  const boughtItems = allItems.filter((i) => !i.active);
 
   return (
     <>
-      {activeItems.length > 0 ? (
+      {activeGroups.length > 0 ? (
         <section className="board" aria-label="Presentes disponiveis">
-          <div className="grid">
-            {activeItems.map((i) => (
-              <GiftCard
-                key={i.id}
-                item={i}
-                onComprar={() => recordClick(i.id)}
-              />
-            ))}
-          </div>
+          {activeGroups.map((g) => (
+            <div className="category" id={categoryId(g.name)} key={g.name}>
+              <h2 className="category-title">
+                <span className="category-emoji">{categoryEmoji(g.name)}</span>
+                {g.name}
+              </h2>
+              <div className="grid">
+                {g.items.map((i) => (
+                  <GiftCard
+                    key={i.id}
+                    item={i}
+                    onComprar={() => recordClick(i.id)}
+                  />
+                ))}
+              </div>
+            </div>
+          ))}
         </section>
       ) : (
         <section className="board">
@@ -151,7 +171,7 @@ export default function GiftBoard({
 
       {modalOpen && (
         <ReturningModal
-          items={items}
+          items={allItems}
           clicked={clicked}
           confirmed={confirmed}
           onConfirm={handleConfirm}

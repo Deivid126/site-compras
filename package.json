@@ -4,11 +4,14 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "prisma generate && next build",
     "start": "next start",
+    "lint": "eslint .",
     "typecheck": "tsc --noEmit",
+    "postinstall": "prisma generate",
     "prisma:generate": "prisma generate",
     "prisma:push": "prisma db push",
+    "db:deploy": "prisma db push && tsx prisma/seed.ts",
     "seed": "tsx prisma/seed.ts",
     "seed:compiled": "node prisma/dist/seed.js"
   },
@@ -24,10 +27,13 @@
     "react-dom": "19.0.0"
   },
   "devDependencies": {
+    "@eslint/eslintrc": "^3.3.6",
     "@types/canvas-confetti": "^1.6.4",
     "@types/node": "^22.10.0",
     "@types/react": "^19.0.0",
     "@types/react-dom": "^19.0.0",
+    "eslint": "^9.39.5",
+    "eslint-config-next": "^16.2.10",
     "tsx": "^4.19.0",
     "typescript": "^5.7.0"
   }

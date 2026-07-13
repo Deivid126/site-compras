@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import type { ItemView, ConfirmResult } from "@/lib/types";
-import { formatBRL } from "@/lib/format";
+import { categoryEmoji, hasImage } from "@/lib/categories";
 
 export default function ReturningModal({
   items,
@@ -83,11 +83,16 @@ export default function ReturningModal({
                   onClick={() => setSelectedId(i.id)}
                   type="button"
                 >
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={i.imageUrl} alt={i.title} />
+                  {hasImage(i) ? (
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <img src={i.imageUrl} alt={i.title} />
+                  ) : (
+                    <span className="modal-item-emoji" aria-hidden="true">
+                      {categoryEmoji(i.category)}
+                    </span>
+                  )}
                   <div className="modal-item-info">
                     <strong>{i.title}</strong>
-                    <span>{formatBRL(i.priceCents)}</span>
                   </div>
                   <span className="modal-item-cta">Sim, comprei!</span>
                 </button>
@@ -95,8 +100,14 @@ export default function ReturningModal({
 
               {gonePending.map((i) => (
                 <div key={i.id} className="modal-item gone">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={i.imageUrl} alt={i.title} />
+                  {hasImage(i) ? (
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <img src={i.imageUrl} alt={i.title} />
+                  ) : (
+                    <span className="modal-item-emoji" aria-hidden="true">
+                      {categoryEmoji(i.category)}
+                    </span>
+                  )}
                   <div className="modal-item-info">
                     <strong>{i.title}</strong>
                     <span>Ja foi comprado por outra pessoa 😊</span>
@@ -119,8 +130,7 @@ export default function ReturningModal({
           <form onSubmit={submit}>
             <h2>Oba! 🏎️</h2>
             <p>
-              Voce comprou <strong>{selected.title}</strong> (
-              {formatBRL(selected.priceCents)}).
+              Voce comprou <strong>{selected.title}</strong>.
             </p>
 
             <label htmlFor="buyer-name" className="field-label">

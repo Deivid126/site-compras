@@ -22,8 +22,17 @@ prisma/dist/
 # docker local data
 .postgres-data/
 
+# vercel
+.vercel/
+
+# build outputs
+dist/
+build/
+out/
+
 # misc
 *.log
+*.tsbuildinfo
 .DS_Store
 .idea/
 .vscode/
