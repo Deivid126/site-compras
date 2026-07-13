@@ -1,6 +1,7 @@
 export const dynamic = "force-dynamic";
 
 import Link from "next/link";
+import PriceInput from "@/components/PriceInput";
 
 const CATEGORIES = ["Calçados", "Brinquedos", "Roupas"];
 
@@ -46,16 +47,9 @@ export default function NewItemPage() {
         </select>
 
         <label htmlFor="priceCents" className="field-label">
-          Preco (R$) — use centavos
+          Preco (R$)
         </label>
-        <input
-          id="priceCents"
-          name="priceCents"
-          type="number"
-          className="input"
-          defaultValue="0"
-          min="0"
-        />
+        <PriceInput initialCents={0} />
 
         <label htmlFor="size" className="field-label">
           Tamanho

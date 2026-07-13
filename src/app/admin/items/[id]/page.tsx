@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import { prisma } from "@/lib/prisma";
 import Link from "next/link";
+import PriceInput from "@/components/PriceInput";
 
 export const dynamic = "force-dynamic";
 
@@ -87,16 +88,9 @@ export default async function EditItemPage({
         </select>
 
         <label htmlFor="priceCents" className="field-label">
-          Preco (centavos)
+          Preco (R$)
         </label>
-        <input
-          id="priceCents"
-          name="priceCents"
-          type="number"
-          className="input"
-          defaultValue={item.priceCents}
-          min="0"
-        />
+        <PriceInput initialCents={item.priceCents} />
 
         <label htmlFor="size" className="field-label">
           Tamanho
