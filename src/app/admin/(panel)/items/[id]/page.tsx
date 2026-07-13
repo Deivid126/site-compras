@@ -133,7 +133,11 @@ export default async function EditItemPage({
           <p className="adm-no-img">Nenhuma imagem cadastrada.</p>
         )}
 
-        <ImageUploadForm action={`/api/admin/items/${item.id}/image`} />
+        <ImageUploadForm
+          action={`/api/admin/items/${item.id}/image`}
+          deleteAction={`/api/admin/items/${item.id}/image`}
+          hasImage={Boolean(item.imageUrl)}
+        />
       </div>
 
       <div className="adm-section adm-danger-zone">

@@ -23,6 +23,10 @@ export async function POST(
     return NextResponse.json({ error: "no-file" }, { status: 400 });
   }
 
+  if (file.size > 5 * 1024 * 1024) {
+    return NextResponse.json({ error: "Arquivo muito grande (máx 5MB)" }, { status: 400 });
+  }
+
   const contentType = file.type;
   if (!MIME[contentType]) {
     return NextResponse.json({ error: "unsupported-type" }, { status: 400 });
@@ -49,5 +53,22 @@ export async function POST(
       { error: e instanceof Error ? e.message : "server" },
       { status: 500 },
     );
+  }
+}
+
+export async function DELETE(
+  req: NextRequest,
+  { params }: { params: Promise<{ id: string }> },
+) {
+  const { id } = await params;
+  try {
+    await prisma.item.update({
+      where: { id },
+      data: { imageUrl: "" },
+    });
+    clearAll();
+    return NextResponse.json({ ok: true });
+  } catch {
+    return NextResponse.json({ error: "not-found" }, { status: 404 });
   }
 }
