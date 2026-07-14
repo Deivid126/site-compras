@@ -56,6 +56,7 @@ export default function GiftBoard({
   }, [confirmed]);
 
   function checkPending() {
+    if (confirmedRef.current.length > 0) return;
     const c = readClicked();
     setClicked(c);
     const pending = c.filter(
