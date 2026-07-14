@@ -190,7 +190,7 @@ export default function GiftBoard({
         </section>
       ) : (
         <section className="board">
-          <p className="empty">Toda a pista já foi! Muito obrigado a todos! 🏁💛</p>
+          <p className="empty">Toda a lista já foi! Muito obrigado a todos! 🏁💛</p>
         </section>
       )}
 

@@ -143,7 +143,7 @@ export default async function EditItemPage({
       <div className="adm-section adm-danger-zone">
         <h2 className="adm-section-h adm-danger-h">Zona de perigo</h2>
         <p className="adm-danger-desc">
-          Remover este item da pista. A ação não pode ser desfeita pela interface.
+          Remover este item da lista. A ação não pode ser desfeita pela interface.
         </p>
         <DeleteButton
           action={`/api/admin/items/${item.id}`}

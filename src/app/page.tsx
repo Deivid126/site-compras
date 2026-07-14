@@ -13,6 +13,7 @@ import ScrollTopButton from "@/components/ScrollTopButton";
 import { categoryId } from "@/lib/format";
 import type { ItemView } from "@/lib/types";
 import { UNCATEGORIZED } from "@/lib/types";
+import { getCategoryFlags } from "@/lib/categories";
 
 export const dynamic = "force-dynamic";
 
@@ -32,6 +33,8 @@ export default async function Home() {
       include: { purchases: true },
     }));
   setItems(items);
+
+  const categoryFlags = await getCategoryFlags();
 
   let confirmedItemIds: string[];
   if (visitorId) {
@@ -78,15 +81,23 @@ export default async function Home() {
       arr.push(item);
       map.set(name, arr);
     }
-    const out = [...map.entries()].map(([name, items]) => ({ name, items }));
-    out.sort((a, b) => (a.name === UNCATEGORIZED ? 1 : b.name === UNCATEGORIZED ? -1 : a.name.localeCompare(b.name, "pt-BR")));
+    let out = [...map.entries()].map(([name, items]) => ({
+      name,
+      items,
+    }));
+    out = out.filter(
+      (g) => g.name === UNCATEGORIZED || categoryFlags.get(g.name)?.visible !== false,
+    );
+    out.sort((a, b) => (a.name === UNCATEGORIZED ? 1 : b.name === UNCATEGORIZED ? -1 : (categoryFlags.get(a.name)?.order ?? 0) - (categoryFlags.get(b.name)?.order ?? 0) || a.name.localeCompare(b.name, "pt-BR")));
     return out;
   })();
 
-  const headerCategories: CategoryRef[] = groups.map((g) => ({
-    name: g.name,
-    id: categoryId(g.name),
-  }));
+  const headerCategories: CategoryRef[] = groups
+    .filter((g) => g.name === UNCATEGORIZED || categoryFlags.get(g.name)?.showInMenu !== false)
+    .map((g) => ({
+      name: g.name,
+      id: categoryId(g.name),
+    }));
 
   return (
     <main>
@@ -105,10 +116,9 @@ export default async function Home() {
 
       <header className="hero">
         <p className="hero-kicker">Festa de 2 aninhos do Noah 🏎️</p>
-        <h1 className="hero-title">Pista de Presentes do Noah</h1>
+        <h1 className="hero-title">Lista de Presentes do Noah</h1>
         <p className="hero-sub">
-          Escolha um presentinho para o nosso pequeno piloto. Obrigado pela
-          volta de largada! 🏁
+          Escolha um presentinho para o nosso pequeno piloto. 🏁
         </p>
         {boughtCount > 0 && (
           <p className="hero-badge">
@@ -122,7 +132,7 @@ export default async function Home() {
       <GiftBoard groups={groups} confirmedItemIds={confirmedItemIds} />
 
       <footer className="footer">
-        <p>Feito com 💛 para o Noah virar 2 em grande estilo. 🏎️🏁</p>
+        <p>Feito com 💛 para o Noah virar 2 anos em grande estilo. 🏎️🏁</p>
       </footer>
 
       <ScrollTopButton />

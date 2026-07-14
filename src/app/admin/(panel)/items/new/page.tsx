@@ -15,7 +15,7 @@ export default function NewItemPage() {
       </nav>
 
       <h1 className="adm-page-title">Novo presente</h1>
-      <p className="adm-page-sub">Cadastre um item na pista</p>
+      <p className="adm-page-sub">Cadastre um item na lista</p>
 
       <form action="/api/admin/items" method="POST" className="adm-form-grid">
         <div className="adm-section">

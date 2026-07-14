@@ -16,7 +16,7 @@ export default async function AdminLoginPage({
           <span className="adm-login-mark">🏁</span>
         </div>
         <h1 className="adm-login-title">Painel Administrativo</h1>
-        <p className="adm-login-sub">Pista de Presentes do Noah</p>
+        <p className="adm-login-sub">Lista de Presentes do Noah</p>
 
         {sp.error === "1" && (
           <div className="adm-alert adm-alert-error">

@@ -653,7 +653,18 @@ async function main() {
       },
     });
   }
+  const usedCategories = Array.from(
+    new Set(items.map((i) => i.category).filter((c): c is string => !!c)),
+  );
+  for (const name of usedCategories) {
+    await prisma.category.upsert({
+      where: { name },
+      create: { name, showInMenu: true, visible: true, order: 0 },
+      update: {},
+    });
+  }
   console.log(`Seed: ${items.length} presentes sincronizados (upsert por storeUrl).`);
+  console.log(`Seed: ${usedCategories.length} categorias sincronizadas.`);
 }
 
 main()

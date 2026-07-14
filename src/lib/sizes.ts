@@ -16,11 +16,7 @@ export const SIZES: Record<string, SizeEntry> = {
     label: "Roupa",
     emoji: "👕",
     note: "Tamanho de roupa do Noah",
-    values: [
-      // TODO: inserir a lógica do número da roupa.
-      // Sugestão: para 2 anos, geralmente "2 anos" (12-18m para bebês).
-      // Ex. para habilitar: values: ["2 anos", "18-24m"]
-    ],
+    values: ["2 - 3 anos"],
   },
 };
 

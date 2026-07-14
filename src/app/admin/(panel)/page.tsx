@@ -31,7 +31,7 @@ export default async function AdminDashboard() {
       <div className="adm-head-row">
         <div>
           <h1 className="adm-page-title">Presentes</h1>
-          <p className="adm-page-sub">Gerencie os itens da pista</p>
+          <p className="adm-page-sub">Gerencie os itens da lista</p>
         </div>
         <Link href="/admin/items/new" className="adm-btn adm-btn-primary">
           + Novo presente

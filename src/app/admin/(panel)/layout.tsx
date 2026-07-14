@@ -8,7 +8,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
           <Link href="/admin" className="adm-brand">
             <span className="adm-brand-mark">🏁</span>
             <span className="adm-brand-text">
-              <strong>Pista Admin</strong>
+              <strong>Lista Admin</strong>
               <small>Presentes do Noah</small>
             </span>
           </Link>
@@ -16,6 +16,9 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
           <nav className="adm-topnav">
             <Link href="/admin" className="adm-navlink">
               Itens
+            </Link>
+            <Link href="/admin/categories" className="adm-navlink">
+              Categorias
             </Link>
             <Link href="/admin/items/new" className="adm-navlink">
               Novo
