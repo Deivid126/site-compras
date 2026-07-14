@@ -5,15 +5,25 @@ const CATEGORY_LABEL: Record<string, string> = {
   roupas: "Roupas",
 };
 
-const items = (Object.entries(SIZES) as [string, (typeof SIZES)[string]][]).map(
-  ([key, entry]) => ({
-    key,
-    entry,
-    categoryLabel: CATEGORY_LABEL[key] ?? entry.label,
-  }),
-);
+export default function SizeBanner({
+  hiddenCategories,
+}: {
+  hiddenCategories: Set<string>;
+}) {
+  const items = (Object.entries(SIZES) as [string, (typeof SIZES)[string]][])
+    .map(([key, entry]) => ({
+      key,
+      entry,
+      categoryLabel: CATEGORY_LABEL[key] ?? entry.label,
+    }))
+    .filter(
+      (it) =>
+        !hiddenCategories.has(it.categoryLabel) &&
+        !hiddenCategories.has(it.key),
+    );
 
-export default function SizeBanner() {
+  if (items.length === 0) return null;
+
   return (
     <aside className="size-banner" aria-label="Tamanhos do Noah">
       <div className="size-banner-head">

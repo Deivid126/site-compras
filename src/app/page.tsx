@@ -127,7 +127,15 @@ export default async function Home() {
         )}
       </header>
 
-      <SizeBanner />
+      <SizeBanner
+        hiddenCategories={
+          new Set(
+            [...categoryFlags.values()]
+              .filter((c) => c.visible === false)
+              .map((c) => c.name),
+          )
+        }
+      />
 
       <GiftBoard groups={groups} confirmedItemIds={confirmedItemIds} />
 
