@@ -141,6 +141,10 @@ export default function GiftBoard({
         });
         setModalOpen(false);
         result = { ok: true };
+        if (typeof window !== "undefined") {
+          window.location.reload();
+          return result;
+        }
       } else if (res.status === 409) {
         result = { ok: false, error: "already-bought" };
       } else {
@@ -198,7 +202,7 @@ export default function GiftBoard({
       {boughtItems.length > 0 && (
         <section className="bought-section" aria-label="Presentes ja escolhidos">
           <h2 className="bought-title">
-            🏁 Presentes já largaram 🏁
+            🏁 Presentes já comprados 🏁
           </h2>
           <div className="grid bought-grid">
             {boughtItems.map((i) => (
